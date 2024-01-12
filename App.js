@@ -14,7 +14,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 const Tab = createMaterialBottomTabNavigator();
 
 const App = () => {
-  StatusBar.setBackgroundColor('transparent');  // Set status bar color to transparent
+  StatusBar.setTranslucent(true);
+  StatusBar.setBarStyle('light-content');
 
   return (
     <LinearGradient
@@ -38,6 +39,7 @@ const App = () => {
               tabBarIcon: ({ color }) => (
                 <Ionicons name="home" size={26} color={color} />
               ),
+              headerShown: false,  // Hide the header
             }}
           />
           <Tab.Screen
@@ -47,6 +49,7 @@ const App = () => {
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons name="bookmark" size={26} color={color} />
               ),
+              headerShown: false,  // Hide the header
             }}
           />
           <Tab.Screen
@@ -56,6 +59,7 @@ const App = () => {
               tabBarIcon: ({ color }) => (
                 <Ionicons name="help-circle" size={26} color={color} />
               ),
+              headerShown: false,  // Hide the header
             }}
           />
           <Tab.Screen
@@ -65,9 +69,16 @@ const App = () => {
               tabBarIcon: ({ color }) => (
                 <Ionicons name="person" size={26} color={color} />
               ),
+              headerShown: false,  // Hide the header
             }}
           />
-          <Tab.Screen name="MovieInfo" component={MovieInfoScreen} />
+          <Tab.Screen
+            name="MovieInfo"
+            component={MovieInfoScreen}
+            options={{
+              headerShown: false,  // Hide the header
+            }}
+          />
         </Tab.Navigator>
       </NavigationContainer>
     </LinearGradient>
