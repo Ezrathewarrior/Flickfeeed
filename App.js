@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import { StatusBar } from 'react-native';  // Import StatusBar
 import HomeScreen from './screens/HomeScreen';
 import BookmarkScreen from './screens/BookmarkScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -10,11 +11,11 @@ import RandomMovieScreen from './screens/RandomMovieScreen';
 import MovieInfoScreen from './screens/MovieInfoScreen';
 import { LinearGradient } from 'expo-linear-gradient';
 
-
-
 const Tab = createMaterialBottomTabNavigator();
 
 const App = () => {
+  StatusBar.setBackgroundColor('transparent');  // Set status bar color to transparent
+
   return (
     <LinearGradient
       colors={['#909090', '#0A4C71']}
@@ -66,7 +67,7 @@ const App = () => {
               ),
             }}
           />
- <Tab.Screen name="MovieInfo" component={MovieInfoScreen} />
+          <Tab.Screen name="MovieInfo" component={MovieInfoScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     </LinearGradient>
@@ -76,11 +77,6 @@ const App = () => {
 const styles = StyleSheet.create({
   gradientContainer: {
     flex: 1,
-  },
-  createPostButton: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 
