@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { SafeAreaView } from 'react-native-safe-area-context'; // Import SafeAreaView
 import * as Font from 'expo-font';
 
 const loadFonts = async () => {
@@ -19,23 +20,32 @@ const ProfileScreen = () => {
   const profileImageUri = require('../assets/images/Icon58.png');
   const userName = 'Ezra';
 
+  useEffect(() => {
+    loadFonts(); // Load fonts in the useEffect to ensure it is done after the initial render
+  }, []);
+
   return (
-    <LinearGradient
-      colors={['#EA7520', '#04202F']}
-      style={styles.gradientContainer}
-    >
-      <View style={styles.container}>
-        <View style={styles.profileContainer}>
-          <Image source={profileImageUri} style={styles.profileImage} />
-          <Text style={styles.userName}>{userName}</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <LinearGradient
+        colors={['#EA7520', '#04202F']}
+        style={styles.gradientContainer}
+      >
+        <View style={styles.container}>
+          <View style={styles.profileContainer}>
+            <Image source={profileImageUri} style={styles.profileImage} />
+            <Text style={styles.userName}>{userName}</Text>
+          </View>
+          {/* Other components and logic */}
         </View>
-        {/* Other components and logic */}
-      </View>
-    </LinearGradient>
+      </LinearGradient>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
   gradientContainer: {
     flex: 1,
   },

@@ -9,7 +9,7 @@ import BookmarkScreen from './screens/BookmarkScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import RandomMovieScreen from './screens/RandomMovieScreen';
 import MovieInfoScreen from './screens/MovieInfoScreen';
-
+import { LinearGradient } from 'expo-linear-gradient';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -17,6 +17,10 @@ const App = () => {
   StatusBar.setTranslucent(true);
 
   return (
+    <LinearGradient
+      colors={['#909090', '#0A4C71']}
+      style={styles.gradientContainer}
+    >
       <NavigationContainer>
         <Tab.Navigator
           initialRouteName="Home"
@@ -75,6 +79,7 @@ const App = () => {
           />
         </Tab.Navigator>
       </NavigationContainer>
+    </LinearGradient>
   );
 };
 

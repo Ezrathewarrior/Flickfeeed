@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context'; // Import SafeAreaView
 
 const RandomMovieScreen = () => {
   const [randomMovie, setRandomMovie] = useState(null);
@@ -52,41 +53,41 @@ const RandomMovieScreen = () => {
 
   const navigation = useNavigation();
 
-
   const renderRandomMovie = () => {
-
     if (randomMovie) {
       return (
-        <LinearGradient
-          colors={['#EA7520', '#04202F']} // Adjust the gradient colors as needed
-          style={styles.gradientContainer}
-        >
-          <View style={styles.container}>
-            <Text style={styles.title}>Random Movie Generator</Text>
+        <SafeAreaView style={styles.safeArea}>
+          <LinearGradient
+            colors={['#EA7520', '#04202F']} // Adjust the gradient colors as needed
+            style={styles.gradientContainer}
+          >
+            <View style={styles.container}>
+              <Text style={styles.title}>Random Movie Generator</Text>
 
-            <View style={styles.genreButtons}>
-              {genres.map((genre) => (
-                <TouchableOpacity
-                  key={genre.id}
-                  style={styles.genreButton}
-                  onPress={() => fetchRandomMovie(genre.id)}
-                >
-                  <Text style={styles.buttonText}>{genre.name}</Text>
-                </TouchableOpacity>
-              ))}
+              <View style={styles.genreButtons}>
+                {genres.map((genre) => (
+                  <TouchableOpacity
+                    key={genre.id}
+                    style={styles.genreButton}
+                    onPress={() => fetchRandomMovie(genre.id)}
+                  >
+                    <Text style={styles.buttonText}>{genre.name}</Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+
+              <TouchableOpacity onPress={() => navigation.navigate('MovieInfo', { movie: randomMovie })}>
+                <Image
+                  source={{ uri: `https://image.tmdb.org/t/p/w500${randomMovie.poster_path}` }}
+                  style={{ width: 300, height: 400 }}  // Adjust the dimensions as needed
+                  resizeMode="cover"
+                />
+              </TouchableOpacity>
+
+              <Text style={styles.movieTitle}>{randomMovie.title}</Text>
             </View>
-
-            <TouchableOpacity onPress={() => navigation.navigate('MovieInfo', { movie: randomMovie })}>
-            <Image
-  source={{ uri: `https://image.tmdb.org/t/p/w500${randomMovie.poster_path}` }}
-  style={{ width: 300, height: 400 }}  // Adjust the dimensions as needed
-  resizeMode="cover"
-/>
-            </TouchableOpacity>
-
-            <Text style={styles.movieTitle}>{randomMovie.title}</Text>
-          </View>
-        </LinearGradient>
+          </LinearGradient>
+        </SafeAreaView>
       );
     }
 
@@ -97,6 +98,9 @@ const RandomMovieScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
   gradientContainer: {
     flex: 1,
   },

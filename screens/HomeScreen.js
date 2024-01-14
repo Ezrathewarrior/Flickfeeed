@@ -1,6 +1,5 @@
-// Import necessary components and libraries
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 import TrendingMoviesComponent from '../components/TrendingMoviesComponent';
 import MovieComponent from '../components/MovieComponent';
 import ActionMoviesComponent from '../components/ActionMoviesComponent';
@@ -11,7 +10,6 @@ import HorrorMoviesComponent from '../components/HorrorMoviesComponent';
 import { LinearGradient } from 'expo-linear-gradient';
 import SearchBar from '../components/SearchBar';
 import UserProfileComponent from '../components/UserProfileComponent';
-
 
 const HomeScreen = () => {
   const [error, setError] = useState(null);
@@ -34,59 +32,62 @@ const HomeScreen = () => {
   };
 
   return (
-    <LinearGradient colors={['#EA7520', '#04202F']} style={styles.gradientContainer}>
-      <ScrollView>
-        <UserProfileComponent name="John" />
-        <SearchBar />
+    <SafeAreaView style={styles.container}>
+      <LinearGradient colors={['#EA7520', '#04202F']} style={styles.gradientContainer}>
+        <ScrollView>
+          <UserProfileComponent name="John" />
+          <SearchBar />
 
-        <View style={styles.container}>
-          {error ? (
-            <Text style={styles.errorText}>{error}</Text>
-          ) : (
-            <>
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <TrendingMoviesComponent />
-              </ScrollView>
+          <View style={styles.contentContainer}>
+            {error ? (
+              <Text style={styles.errorText}>{error}</Text>
+            ) : (
+              <>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                  <TrendingMoviesComponent />
+                </ScrollView>
 
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <MovieComponent />
-              </ScrollView>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                  <MovieComponent />
+                </ScrollView>
 
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <ActionMoviesComponent />
-              </ScrollView>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                  <ActionMoviesComponent />
+                </ScrollView>
 
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <ComedyMoviesComponent />
-              </ScrollView>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                  <ComedyMoviesComponent />
+                </ScrollView>
 
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <FamilyMoviesComponent />
-              </ScrollView>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                  <FamilyMoviesComponent />
+                </ScrollView>
 
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <KidsMovieComponent />
-              </ScrollView>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                  <KidsMovieComponent />
+                </ScrollView>
 
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <HorrorMoviesComponent />
-              </ScrollView>
-
-
-            </>
-          )}
-        </View>
-      </ScrollView>
-    </LinearGradient>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                  <HorrorMoviesComponent />
+                </ScrollView>
+              </>
+            )}
+          </View>
+        </ScrollView>
+      </LinearGradient>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'black', // Set background color if needed
+  },
   gradientContainer: {
     flex: 1,
   },
-  container: {
-    flex: 1,
+  contentContainer: {
     paddingTop: 20,
   },
   errorText: {

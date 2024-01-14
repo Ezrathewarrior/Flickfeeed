@@ -22,6 +22,9 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
       },
+      "statusBar": {
+        "backgroundColor": "#000000"
+      },
       "package": "com.flickfeed.FlickFeed"
     },
     "web": {
