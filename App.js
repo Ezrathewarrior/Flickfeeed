@@ -3,33 +3,27 @@ import { View, StyleSheet } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'react-native';  // Import StatusBar
+import { StatusBar } from 'react-native';
 import HomeScreen from './screens/HomeScreen';
 import BookmarkScreen from './screens/BookmarkScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import RandomMovieScreen from './screens/RandomMovieScreen';
 import MovieInfoScreen from './screens/MovieInfoScreen';
-import { LinearGradient } from 'expo-linear-gradient';
+
 
 const Tab = createMaterialBottomTabNavigator();
 
 const App = () => {
   StatusBar.setTranslucent(true);
-  StatusBar.setBarStyle('light-content');
 
   return (
-    <LinearGradient
-      colors={['#909090', '#0A4C71']}
-      style={styles.gradientContainer}
-    >
       <NavigationContainer>
         <Tab.Navigator
           initialRouteName="Home"
           activeColor="#FF4319"
           inactiveColor="#EA7520"
           barStyle={{ backgroundColor: 'transparent', borderTopLeftRadius: 20, borderTopRightRadius: 20 }}
-          screenOptions={({ route }) => ({
-          })}
+          screenOptions={({ route }) => ({})}
         >
           {/* Define your tab screens with icons */}
           <Tab.Screen
@@ -81,7 +75,6 @@ const App = () => {
           />
         </Tab.Navigator>
       </NavigationContainer>
-    </LinearGradient>
   );
 };
 
