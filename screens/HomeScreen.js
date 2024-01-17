@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import TrendingMoviesComponent from '../components/TrendingMoviesComponent';
 import MovieComponent from '../components/MovieComponent';
 import ActionMoviesComponent from '../components/ActionMoviesComponent';
@@ -10,6 +10,7 @@ import HorrorMoviesComponent from '../components/HorrorMoviesComponent';
 import { LinearGradient } from 'expo-linear-gradient';
 import SearchBar from '../components/SearchBar';
 import UserProfileComponent from '../components/UserProfileComponent';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const HomeScreen = () => {
   const [error, setError] = useState(null);
@@ -82,7 +83,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black', // Set background color if needed
+    backgroundColor: '#EA7520', // Set background color if needed
   },
   gradientContainer: {
     flex: 1,

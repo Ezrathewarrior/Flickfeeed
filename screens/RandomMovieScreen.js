@@ -100,6 +100,7 @@ const RandomMovieScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
+    backgroundColor: '#EA7520',
   },
   gradientContainer: {
     flex: 1,

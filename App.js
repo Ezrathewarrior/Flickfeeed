@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, StatusBar } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'react-native';
 import HomeScreen from './screens/HomeScreen';
 import BookmarkScreen from './screens/BookmarkScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -14,14 +13,13 @@ import { LinearGradient } from 'expo-linear-gradient';
 const Tab = createMaterialBottomTabNavigator();
 
 const App = () => {
-  StatusBar.setTranslucent(true);
-
   return (
     <LinearGradient
       colors={['#909090', '#0A4C71']}
       style={styles.gradientContainer}
     >
       <NavigationContainer>
+        <StatusBar backgroundColor="transparent" translucent={true} />
         <Tab.Navigator
           initialRouteName="Home"
           activeColor="#FF4319"
