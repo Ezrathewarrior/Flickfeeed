@@ -3,8 +3,9 @@ import { View, Image, Text, StyleSheet, ScrollView, TouchableOpacity } from 'rea
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { SafeAreaView } from 'react-native-safe-area-context'; // Import SafeAreaView
+import { SafeAreaView } from 'react-native-safe-area-context';
 import TrailerComponent from '../components/TrailerComponent';
+
 
 const MovieInfoScreen = ({ route }) => {
   const navigation = useNavigation();
@@ -23,17 +24,21 @@ const MovieInfoScreen = ({ route }) => {
   }, []);
 
   const toggleBookmark = () => {
-    // Toggle the bookmark state for the specific movie
-    if (isBookmarked) {
-      // Remove the movie from the bookmarked list
-      setBookmarkedMovies(bookmarkedMovies.filter((item) => item.id !== movie.id));
-    } else {
-      // Add the movie to the bookmarked list
-      setBookmarkedMovies([...bookmarkedMovies, movie]);
-    }
-
-    // You can save the updated bookmarked movies to storage or a database here
+    // Check if the movie is already bookmarked
+    const isAlreadyBookmarked = bookmarkedMovies.some((item) => item.id === movie.id);
+  
+    // Update the state
+    setBookmarkedMovies((prevMovies) =>
+      isAlreadyBookmarked
+        ? prevMovies.filter((item) => item.id !== movie.id)
+        : [...prevMovies, movie]
+    );
   };
+  
+  useEffect(() => {
+    // Navigate to the BookmarkScreen with the updated state
+    navigation.navigate('Bookmark', { bookmarkedMovies });
+  }, [bookmarkedMovies, navigation]);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -134,6 +139,18 @@ const styles = StyleSheet.create({
   },
   starIcon: {
     marginLeft: 4,
+  },
+  bookmarkScreenButton: {
+    marginTop: 16,
+    backgroundColor: '#fff',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  bookmarkScreenButtonText: {
+    color: '#EA7520',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 
